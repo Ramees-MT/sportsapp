@@ -5,6 +5,6 @@ import 'package:sportsapp/screens/standingdetails.dart';
 import 'package:sportsapp/screens/teamdetails.dart';
 
 void main() {
-  runApp((MaterialApp(home:SplashScreen2() ,)));
+  runApp((MaterialApp(home:Detailteam() ,)));
 }
 
