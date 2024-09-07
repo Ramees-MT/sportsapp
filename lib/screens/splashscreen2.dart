@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sportsapp/screens/splash.dart';
 
 class Splashscreen extends StatelessWidget {
   @override
@@ -73,6 +74,7 @@ class Splashscreen extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () {
+                        
                         showModalBottomSheet(
                           context: context,
                           shape: RoundedRectangleBorder(
@@ -222,7 +224,7 @@ class _SignInBottomSheetState extends State<SignInBottomSheet> {
           SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
-              // Handle sign in action
+             Navigator.push(context, MaterialPageRoute(builder: (context) => SplashScreen2(),));
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF347AF0),

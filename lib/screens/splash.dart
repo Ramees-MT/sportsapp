@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sportsapp/screens/livescorescreen.dart';
 
 class SplashScreen2 extends StatefulWidget {
   const SplashScreen2({super.key});
@@ -66,7 +67,9 @@ class _SplashScreenState extends State<SplashScreen2> {
             ),
             SizedBox(height: 130,),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Livescore(),));
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF347AF0), // Button background color
                 shape: RoundedRectangleBorder(
