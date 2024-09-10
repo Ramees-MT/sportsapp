@@ -20,7 +20,6 @@ class _LivescoreState extends State<Livescore> {
     {'image': 'asset/images/image 7.png', 'name': 'Volleyball'},
   ];
 
- 
   final List<Map<String, dynamic>> matchData = [
     {
       'league': 'La Liga',
