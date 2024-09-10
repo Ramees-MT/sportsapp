@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sportsapp/screens/matchdetailscreen.dart';
 import 'package:sportsapp/widgets/imagecontainer.dart';
 
 class Livescore extends StatefulWidget {
@@ -53,7 +54,7 @@ class _LivescoreState extends State<Livescore> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xFF0D1226),
+        backgroundColor: const Color(0xFF0D1226),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -63,7 +64,7 @@ class _LivescoreState extends State<Livescore> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Live Score',
                     style: TextStyle(
                       color: Colors.white,
@@ -74,25 +75,25 @@ class _LivescoreState extends State<Livescore> {
                   Row(
                     children: [
                       IconButton(
-                        icon: Icon(Icons.search, color: Colors.white),
+                        icon: const Icon(Icons.search, color: Colors.white),
                         onPressed: () {},
                       ),
                       IconButton(
-                        icon: Icon(Icons.notifications, color: Colors.white),
+                        icon: const Icon(Icons.notifications, color: Colors.white),
                         onPressed: () {},
                       ),
                     ],
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Center(
                 child: Container(
                   height: 170,
                   width: double.infinity, // Full width
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20), // Rounded corners
-                    gradient: LinearGradient(
+                    borderRadius: BorderRadius.circular(20), 
+                    gradient: const LinearGradient(
                       colors: [
                         Color(0xFF0C0C69),
                         Color(0xFF246BFD)
@@ -103,16 +104,16 @@ class _LivescoreState extends State<Livescore> {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(
-                        20), // Apply the same border radius
+                        20), 
                     child: Stack(
                       alignment: Alignment.bottomRight,
                       children: [
                         // Background image
                         Image.asset(
-                          'asset/images/image-removebg-preview 4.png', // Replace with your image path
+                          'asset/images/image-removebg-preview 4.png', 
                           fit: BoxFit.cover,
                         ),
-                        // Text content over the image
+                       
                         Positioned(
                           bottom: 20,
                           left: 30,
@@ -137,7 +138,7 @@ class _LivescoreState extends State<Livescore> {
                                           height: 20,
                                           width: 20,
                                         ),
-                                        Text(
+                                        const Text(
                                           ' Football',
                                           style: TextStyle(
                                             color: Colors.black,
@@ -150,23 +151,23 @@ class _LivescoreState extends State<Livescore> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 5),
-                              Text(
+                              const SizedBox(height: 5),
+                              const Text(
                                 'Liverpool UEFA\nChampion League',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold),
                               ),
-                              SizedBox(height: 5),
-                              Text(
+                              const SizedBox(height: 5),
+                              const Text(
                                 'Celebration',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold),
                               ),
-                              SizedBox(height: 5),
+                              const SizedBox(height: 5),
                               Text(
                                 'Yesterday, 06.30 PM',
                                 style: TextStyle(
@@ -204,9 +205,9 @@ class _LivescoreState extends State<Livescore> {
                   },
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Second ListView.builder for match data with spacing
               Expanded(
@@ -221,19 +222,19 @@ class _LivescoreState extends State<Livescore> {
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment
-                                .start, // Align items at the start
+                                .start, 
                             children: [
                               Image.asset(
                                 'asset/images/image 9.png',
                                 height: 40,
                               ),
-                              SizedBox(
-                                  width: 10), // Space between the flag and text
-                              Column(
+                                SizedBox(
+                                  width: 10),
+                             Column(
                                 crossAxisAlignment: CrossAxisAlignment
                                     .start, // Align text to the start
                                 mainAxisAlignment: MainAxisAlignment
-                                    .center, // Center text vertically
+                                    .center,
                                 children: [
                                   Text(
                                     'Premier League',
@@ -255,117 +256,120 @@ class _LivescoreState extends State<Livescore> {
                                   ),
                                 ],
                               ),
-                              Spacer(),
+                              const Spacer(),
                               IconButton(
                                   onPressed: () {},
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.arrow_forward_ios_rounded,
                                     color: Colors.white,
                                   ))
                             ],
                           ),
-                          Card(
-                            color: Color(0xff2B2B3D),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: Container(
-                              height: 100, // Height of card
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    flex:
-                                        4, // Adjust flex to make the big container wider
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
-                                      child: Row(
-                                        children: [
-                                          CircleAvatar(
-                                              radius:
-                                                  20, // Radius for circular logo
-                                              backgroundColor:
-                                                  Color(0xff222232),
-                                              backgroundImage: null),
-                                          SizedBox(
-                                              width:
-                                                  4), // Reduced space between avatars
-                                          CircleAvatar(
-                                              radius:
-                                                  20, // Radius for circular logo
-                                              backgroundColor:
-                                                  Color(0xff222232),
-                                              backgroundImage: null),
-                                          SizedBox(width: 10),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                '${match['homeTeam']} vs ${match['awayTeam']}',
-                                                style: TextStyle(
-                                                    color: Colors.white),
-                                              ),
-                                              Center(
-                                                child: Text.rich(
-                                                  TextSpan(
-                                                    children: [
-                                                      TextSpan(
-                                                        text:
-                                                            '${match['homeScore']}      ', // Increased spaces after home score
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white54),
-                                                      ),
-                                                      TextSpan(
-                                                        text:
-                                                            '-      ', // Increased spaces around the dash
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white54),
-                                                      ),
-                                                      TextSpan(
-                                                        text:
-                                                            '    ${match['awayScore']}', // Increased spaces before away score
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white54),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  textAlign: TextAlign
-                                                      .center, // Center-align the text
+                          GestureDetector(
+                            onTap:(){ Navigator.push(context, MaterialPageRoute(builder: (context) => MatchScreen(),));},
+                            child: Card(
+                              color: const Color(0xff2B2B3D),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Container(
+                                height: 100, 
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex:
+                                          4, 
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left: 8.0),
+                                        child: Row(
+                                          children: [
+                                            const CircleAvatar(
+                                                radius:
+                                                    20, 
+                                                backgroundColor:
+                                                    Color(0xff222232),
+                                                backgroundImage: null),
+                                            const SizedBox(
+                                                width:
+                                                    4), 
+                                            const CircleAvatar(
+                                                radius:
+                                                    20, 
+                                                backgroundColor:
+                                                    Color(0xff222232),
+                                                backgroundImage: null),
+                                            const SizedBox(width: 10),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  '${match['homeTeam']} vs ${match['awayTeam']}',
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                                Center(
+                                                  child: Text.rich(
+                                                    TextSpan(
+                                                      children: [
+                                                        TextSpan(
+                                                          text:
+                                                              '${match['homeScore']}      ', 
+                                                          style: const TextStyle(
+                                                              color:
+                                                                  Colors.white54),
+                                                        ),
+                                                        const TextSpan(
+                                                          text:
+                                                              '-      ', // Increased spaces around the dash
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white54),
+                                                        ),
+                                                        TextSpan(
+                                                          text:
+                                                              '    ${match['awayScore']}',
+                                                          style: const TextStyle(
+                                                              color:
+                                                                  Colors.white54),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    textAlign: TextAlign
+                                                        .center, 
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: Container(
-                                      height: 100,
-                                      width:
-                                          60, // Width to match height of card
-                                      padding:
-                                          EdgeInsets.symmetric(vertical: 4),
-                                      decoration: BoxDecoration(
-                                        color: Color(
-                                            0xff222232), // Always using the same color
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      alignment: Alignment
-                                          .center, // Center the text inside the container
-                                      child: Text(
-                                        match['status'],
-                                        style: TextStyle(color: Colors.white),
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: Container(
+                                        height: 100,
+                                        width:
+                                            60, // Width to match height of card
+                                        padding:
+                                            const EdgeInsets.symmetric(vertical: 4),
+                                        decoration: BoxDecoration(
+                                          color: const Color(
+                                              0xff222232), // Always using the same color
+                                          borderRadius: BorderRadius.circular(8),
+                                        ),
+                                        alignment: Alignment
+                                            .center, // Center the text inside the container
+                                        child: Text(
+                                          match['status'],
+                                          style: const TextStyle(color: Colors.white),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),

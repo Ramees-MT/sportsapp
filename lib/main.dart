@@ -14,6 +14,6 @@ import 'package:sportsapp/screens/teamdetails.dart';
 void main() {
   runApp((MaterialApp(
     
-    home:StandingScreen(),)));
+    home:Splashscreen(),)));
 }
 
