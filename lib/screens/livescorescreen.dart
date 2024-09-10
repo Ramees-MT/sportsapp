@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sportsapp/screens/matchdetailscreen.dart';
 import 'package:sportsapp/widgets/imagecontainer.dart';
 
 class Livescore extends StatefulWidget {
@@ -19,7 +20,6 @@ class _LivescoreState extends State<Livescore> {
     {'image': 'asset/images/image 7.png', 'name': 'Volleyball'},
   ];
 
- 
   final List<Map<String, dynamic>> matchData = [
     {
       'league': 'La Liga',
@@ -269,103 +269,114 @@ class _LivescoreState extends State<Livescore> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
                             ),
-                            child: Container(
-                              height: 100, // Height of card
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    flex:
-                                        4, // Adjust flex to make the big container wider
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
-                                      child: Row(
-                                        children: [
-                                          CircleAvatar(
-                                              radius:
-                                                  20, // Radius for circular logo
-                                              backgroundColor:
-                                                  Color(0xff222232),
-                                              backgroundImage: null),
-                                          SizedBox(
-                                              width:
-                                                  4), // Reduced space between avatars
-                                          CircleAvatar(
-                                              radius:
-                                                  20, // Radius for circular logo
-                                              backgroundColor:
-                                                  Color(0xff222232),
-                                              backgroundImage: null),
-                                          SizedBox(width: 10),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                '${match['homeTeam']} vs ${match['awayTeam']}',
-                                                style: TextStyle(
-                                                    color: Colors.white),
-                                              ),
-                                              Center(
-                                                child: Text.rich(
-                                                  TextSpan(
-                                                    children: [
-                                                      TextSpan(
-                                                        text:
-                                                            '${match['homeScore']}      ', // Increased spaces after home score
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white54),
-                                                      ),
-                                                      TextSpan(
-                                                        text:
-                                                            '-      ', // Increased spaces around the dash
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white54),
-                                                      ),
-                                                      TextSpan(
-                                                        text:
-                                                            '    ${match['awayScore']}', // Increased spaces before away score
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white54),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  textAlign: TextAlign
-                                                      .center, // Center-align the text
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => MatchScreen(),
+                                    ));
+                              },
+                              child: Container(
+                                height: 100, // Height of card
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex:
+                                          4, // Adjust flex to make the big container wider
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 8.0),
+                                        child: Row(
+                                          children: [
+                                            CircleAvatar(
+                                                radius:
+                                                    20, // Radius for circular logo
+                                                backgroundColor:
+                                                    Color(0xff222232),
+                                                backgroundImage: null),
+                                            SizedBox(
+                                                width:
+                                                    4), // Reduced space between avatars
+                                            CircleAvatar(
+                                                radius:
+                                                    20, // Radius for circular logo
+                                                backgroundColor:
+                                                    Color(0xff222232),
+                                                backgroundImage: null),
+                                            SizedBox(width: 10),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  '${match['homeTeam']} vs ${match['awayTeam']}',
+                                                  style: TextStyle(
+                                                      color: Colors.white),
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                                Center(
+                                                  child: Text.rich(
+                                                    TextSpan(
+                                                      children: [
+                                                        TextSpan(
+                                                          text:
+                                                              '${match['homeScore']}      ', // Increased spaces after home score
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .white54),
+                                                        ),
+                                                        TextSpan(
+                                                          text:
+                                                              '-      ', // Increased spaces around the dash
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .white54),
+                                                        ),
+                                                        TextSpan(
+                                                          text:
+                                                              '    ${match['awayScore']}', // Increased spaces before away score
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .white54),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    textAlign: TextAlign
+                                                        .center, // Center-align the text
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: Container(
-                                      height: 100,
-                                      width:
-                                          60, // Width to match height of card
-                                      padding:
-                                          EdgeInsets.symmetric(vertical: 4),
-                                      decoration: BoxDecoration(
-                                        color: Color(
-                                            0xff222232), // Always using the same color
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      alignment: Alignment
-                                          .center, // Center the text inside the container
-                                      child: Text(
-                                        match['status'],
-                                        style: TextStyle(color: Colors.white),
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: Container(
+                                        height: 100,
+                                        width:
+                                            60, // Width to match height of card
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 4),
+                                        decoration: BoxDecoration(
+                                          color: Color(
+                                              0xff222232), // Always using the same color
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        alignment: Alignment
+                                            .center, // Center the text inside the container
+                                        child: Text(
+                                          match['status'],
+                                          style: TextStyle(color: Colors.white),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),

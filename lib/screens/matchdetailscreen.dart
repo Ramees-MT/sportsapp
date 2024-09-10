@@ -48,256 +48,181 @@ class _MatchScreenState extends State<MatchScreen> {
           centerTitle: true,
         ),
         backgroundColor: Colors.black,
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                    children: [
-                      Image.asset('asset/images/idezia.png', height: 50),
-                      const Text('Arsenal', style: TextStyle(color: Colors.white)),
-                    ],
-                  ),
-                  const Column(
-                    children: [
-                      Text(
-                        '2 - 3',
-                        style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text('90.15', style: TextStyle(color: Colors.white))
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Image.asset('asset/images/idezia (1).png', height: 50),
-                      const Text('Aston Villa',
-                          style: TextStyle(color: Colors.white)),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-
-              // TabBar with Rectangle-Shaped Indicator
-              TabBar(
-                dividerHeight: 0,
-                indicatorSize: TabBarIndicatorSize.tab,
-                indicator: BoxDecoration(
-                  color: Colors.orange, // Indicator color
-                  borderRadius: BorderRadius.circular(30), // Rounded corners
-                ),
-                labelColor: Colors.white,
-                unselectedLabelColor: Colors.grey,
-                tabs: [
-                  const Tab(text: 'Match Details'),
-                  const Tab(text: 'Lineups'),
-                  const Tab(text: 'H2H'),
-                ],
-              ),
-
-              const SizedBox(height: 20),
-
-              // TabBarView
-              Expanded(
-                child: TabBarView(
+        body: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
                   children: [
-                    // Match Details Tab
-                    Column(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        Column(
                           children: [
-                            Text('8 ', style: TextStyle(color: Colors.white)),
-                            Text('shooting',
-                                style: TextStyle(color: Colors.white)),
-                            Text('12 ', style: TextStyle(color: Colors.white)),
+                            Image.asset('asset/images/idezia.png', height: 50),
+                            const Text('Arsenal', style: TextStyle(color: Colors.white)),
                           ],
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        const Column(
                           children: [
-                            Text('22 ', style: TextStyle(color: Colors.white)),
-                            Text('shooting',
-                                style: TextStyle(color: Colors.white)),
-                            Text('29 ', style: TextStyle(color: Colors.white)),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text('48 ', style: TextStyle(color: Colors.white)),
-                            Text('shooting',
-                                style: TextStyle(color: Colors.white)),
-                            Text('58 ', style: TextStyle(color: Colors.white)),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text('3 ', style: TextStyle(color: Colors.white)),
-                            Text('shooting',
-                                style: TextStyle(color: Colors.white)),
-                            Text('5 ', style: TextStyle(color: Colors.white)),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text('8 ', style: TextStyle(color: Colors.white)),
-                            Text('shooting',
-                                style: TextStyle(color: Colors.white)),
-                            Text('7', style: TextStyle(color: Colors.white)),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 40,
-                        ),
-                        Row(
-                          children: [
-                            const Text(
-                              'Other Match',
+                            Text(
+                              '2 - 3',
                               style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
+                                fontSize: 32,
+                                fontWeight: FontWeight.w500,
                                 color: Colors.white,
                               ),
                             ),
-                            const Spacer(),
-                            Text(
-                              'See all',
-                              style: TextStyle(
-                                color: Colors.white.withOpacity(0.6),
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                            Text('90.15', style: TextStyle(color: Colors.white))
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Image.asset('asset/images/idezia (1).png', height: 50),
+                            const Text('Aston Villa',
+                                style: TextStyle(color: Colors.white)),
                           ],
                         ),
                       ],
                     ),
-                    // Lineups Tab
-                    Center(
-                      child: Text(
-                        'Lineups content goes here',
-                        style: TextStyle(color: Colors.white),
+                    const SizedBox(height: 20),
+
+                    // TabBar with Rectangle-Shaped Indicator
+                    TabBar(
+                      dividerHeight: 0,
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      indicator: BoxDecoration(
+                        color: Colors.orange, // Indicator color
+                        borderRadius: BorderRadius.circular(30), // Rounded corners
                       ),
+                      labelColor: Colors.white,
+                      unselectedLabelColor: Colors.grey,
+                      tabs: [
+                        const Tab(text: 'Match Details'),
+                        const Tab(text: 'Lineups'),
+                        const Tab(text: 'H2H'),
+                      ],
                     ),
-                    // H2H Tab
-                    Center(
-                      child: Text(
-                        'Head-to-Head content goes here',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
+
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: matchData.length,
-                  itemBuilder: (context, index) {
-                    final match = matchData[index];
-                    return Padding(
-                      padding: const EdgeInsets.only(
-                          bottom: 16.0), // Space between cards
-                      child: Column(
-                        children: [
-                          Card(
-                            color: Color(0xff2B2B3D),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: Container(
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                              height: 100, // Height of card
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    flex: 4, // Adjust flex to make the big container wider
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
-                                      child: Row(
-                                        children: [
-                                          CircleAvatar(
-                                              radius: 20, // Radius for circular logo
-                                              backgroundColor: Color(0xff222232),
-                                              backgroundImage: AssetImage(match['homeLogo'])),
-                                          SizedBox(width: 4), // Reduced space between avatars
-                                          CircleAvatar(
-                                              radius: 20, // Radius for circular logo
-                                              backgroundColor: Color(0xff222232),
-                                              backgroundImage: AssetImage(match['awayLogo'])),
-                                          SizedBox(width: 10),
-                                          Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                '${match['homeTeam']} vs ${match['awayTeam']}',
-                                                style: TextStyle(color: Colors.white),
-                                              ),
-                                              Center(
-                                                child: Text.rich(
-                                                  TextSpan(
-                                                    children: [
-                                                      TextSpan(
-                                                        text: '${match['homeScore']}      ', // Increased spaces after home score
-                                                        style: TextStyle(color: Colors.white54),
-                                                      ),
-                                                      TextSpan(
-                                                        text: '-      ', // Increased spaces around the dash
-                                                        style: TextStyle(color: Colors.white54),
-                                                      ),
-                                                      TextSpan(
-                                                        text: '    ${match['awayScore']}', // Increased spaces before away score
-                                                        style: TextStyle(color: Colors.white54),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  textAlign: TextAlign.center, // Center-align the text
+            ),
+            SliverFillRemaining(
+              child: TabBarView(
+                children: [
+                  // Match Details Tab
+                  ListView.builder(
+                    itemCount: matchData.length,
+                    itemBuilder: (context, index) {
+                      final match = matchData[index];
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 16.0),
+                        child: Card(
+                          color: Color(0xff2B2B3D),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                            height: 100, // Height of card
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: 4, // Adjust flex to make the big container wider
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: Row(
+                                      children: [
+                                        CircleAvatar(
+                                            radius: 20, // Radius for circular logo
+                                            backgroundColor: Color(0xff222232),
+                                            backgroundImage: AssetImage(match['homeLogo'])),
+                                        SizedBox(width: 4), // Reduced space between avatars
+                                        CircleAvatar(
+                                            radius: 20, // Radius for circular logo
+                                            backgroundColor: Color(0xff222232),
+                                            backgroundImage: AssetImage(match['awayLogo'])),
+                                        SizedBox(width: 10),
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              '${match['homeTeam']} vs ${match['awayTeam']}',
+                                              style: TextStyle(color: Colors.white),
+                                            ),
+                                            Center(
+                                              child: Text.rich(
+                                                TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: '${match['homeScore']}      ', // Increased spaces after home score
+                                                      style: TextStyle(color: Colors.white54),
+                                                    ),
+                                                    TextSpan(
+                                                      text: '-      ', // Increased spaces around the dash
+                                                      style: TextStyle(color: Colors.white54),
+                                                    ),
+                                                    TextSpan(
+                                                      text: '    ${match['awayScore']}', // Increased spaces before away score
+                                                      style: TextStyle(color: Colors.white54),
+                                                    ),
+                                                  ],
                                                 ),
+                                                textAlign: TextAlign.center, // Center-align the text
                                               ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: Container(
-                                      height: 100,
-                                      width: 60, // Width to match height of card
-                                      padding: EdgeInsets.symmetric(vertical: 4),
-                                      decoration: BoxDecoration(
-                                        color: Color(0xff222232), // Always using the same color
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      alignment: Alignment.center, // Center the text inside the container
-                                      child: Text(
-                                        match['status'],
-                                        style: TextStyle(color: Colors.white),
-                                      ),
+                                ),
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: Container(
+                                    height: 100,
+                                    width: 60, // Width to match height of card
+                                    padding: EdgeInsets.symmetric(vertical: 4),
+                                    decoration: BoxDecoration(
+                                      color: Color(0xff222232), // Always using the same color
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    alignment: Alignment.center, // Center the text inside the container
+                                    child: Text(
+                                      match['status'],
+                                      style: TextStyle(color: Colors.white),
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
+                        ),
+                      );
+                    },
+                  ),
+                  // Lineups Tab
+                  Center(
+                    child: Text(
+                      'Lineups content goes here',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  // H2H Tab
+                  Center(
+                    child: Text(
+                      'Head-to-Head content goes here',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: [
