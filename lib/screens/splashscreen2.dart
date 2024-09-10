@@ -74,7 +74,6 @@ class Splashscreen extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        
                         showModalBottomSheet(
                           context: context,
                           shape: RoundedRectangleBorder(
@@ -170,7 +169,7 @@ class _SignInBottomSheetState extends State<SignInBottomSheet> {
             decoration: InputDecoration(
               filled: true,
               fillColor: Color(0xff181829), // Set the fill color
-              labelText: 'Email',
+              hintText: 'Email',
               border: OutlineInputBorder(
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(10),
@@ -183,7 +182,7 @@ class _SignInBottomSheetState extends State<SignInBottomSheet> {
             decoration: InputDecoration(
               filled: true,
               fillColor: Color(0xff181829), // Set the fill color
-              labelText: 'Password',
+              hintText: 'Password',
               border: OutlineInputBorder(
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(10),
@@ -224,7 +223,11 @@ class _SignInBottomSheetState extends State<SignInBottomSheet> {
           SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
-             Navigator.push(context, MaterialPageRoute(builder: (context) => SplashScreen2(),));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SplashScreen2(),
+                  ));
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF347AF0),
