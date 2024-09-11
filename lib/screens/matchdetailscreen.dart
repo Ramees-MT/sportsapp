@@ -1,5 +1,9 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:sportsapp/screens/customtab.dart';
+import 'package:sportsapp/model/headtoheadmodel.dart';
+import 'package:sportsapp/utils/constants.dart';
+import 'package:sportsapp/widgets/customtab.dart';
 
 class MatchScreen extends StatefulWidget {
   @override
@@ -7,6 +11,7 @@ class MatchScreen extends StatefulWidget {
 }
 
 class _MatchScreenState extends State<MatchScreen> {
+  UniqueTournament? tournament;
   final List<Map<String, dynamic>> matchData = [
     {
       'league': 'La Liga',
@@ -44,15 +49,39 @@ class _MatchScreenState extends State<MatchScreen> {
     });
   }
 
+  Future<void> fetchTournamentData() async {
+    final url =
+        '$baseUrl v1/event/xdbsZdb/h2h/events'; // Replace with your API URL
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        final jsonData = jsonDecode(response.body);
+        setState(() {
+          tournament = UniqueTournament.fromJson(jsonData);
+        });
+      } else {
+        print('Failed to load data. Status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchTournamentData();
+  }
+
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3, // Number of tabs
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black,
-          title: const Text(
-            'UEFA Champions League',
+          title: Text(
+            tournament?.name ?? 'Loading...',
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
@@ -68,7 +97,8 @@ class _MatchScreenState extends State<MatchScreen> {
                   Column(
                     children: [
                       Image.asset('asset/images/idezia.png', height: 50),
-                      const Text('Arsenal', style: TextStyle(color: Colors.white)),
+                      const Text('Arsenal',
+                          style: TextStyle(color: Colors.white)),
                     ],
                   ),
                   const Column(
@@ -111,8 +141,33 @@ class _MatchScreenState extends State<MatchScreen> {
                   const Tab(text: 'H2H'),
                 ],
               ),
-
-              const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Formation',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      '(4-2-3-1)',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white.withOpacity(0.5),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
 
               // TabBarView
               Expanded(
@@ -126,54 +181,69 @@ class _MatchScreenState extends State<MatchScreen> {
                           child: Column(
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Text('8 ', style: TextStyle(color: Colors.white)),
+                                  Text('8 ',
+                                      style: TextStyle(color: Colors.white)),
                                   Text('shooting',
                                       style: TextStyle(color: Colors.white)),
-                                  Text('12 ', style: TextStyle(color: Colors.white)),
+                                  Text('12 ',
+                                      style: TextStyle(color: Colors.white)),
                                 ],
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Text('22 ', style: TextStyle(color: Colors.white)),
+                                  Text('22 ',
+                                      style: TextStyle(color: Colors.white)),
                                   Text('shooting',
                                       style: TextStyle(color: Colors.white)),
-                                  Text('29 ', style: TextStyle(color: Colors.white)),
+                                  Text('29 ',
+                                      style: TextStyle(color: Colors.white)),
                                 ],
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Text('48 ', style: TextStyle(color: Colors.white)),
+                                  Text('48 ',
+                                      style: TextStyle(color: Colors.white)),
                                   Text('shooting',
                                       style: TextStyle(color: Colors.white)),
-                                  Text('58 ', style: TextStyle(color: Colors.white)),
+                                  Text('58 ',
+                                      style: TextStyle(color: Colors.white)),
                                 ],
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Text('3 ', style: TextStyle(color: Colors.white)),
+                                  Text('3 ',
+                                      style: TextStyle(color: Colors.white)),
                                   Text('shooting',
                                       style: TextStyle(color: Colors.white)),
-                                  Text('5 ', style: TextStyle(color: Colors.white)),
+                                  Text('5 ',
+                                      style: TextStyle(color: Colors.white)),
                                 ],
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Text('8 ', style: TextStyle(color: Colors.white)),
+                                  Text('8 ',
+                                      style: TextStyle(color: Colors.white)),
                                   Text('shooting',
                                       style: TextStyle(color: Colors.white)),
-                                  Text('7', style: TextStyle(color: Colors.white)),
+                                  Text('7',
+                                      style: TextStyle(color: Colors.white)),
                                 ],
                               ),
                             ],
                           ),
                         ),
-                         const SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Row(
                           children: [
                             const Text(
@@ -213,53 +283,83 @@ class _MatchScreenState extends State<MatchScreen> {
                                         borderRadius: BorderRadius.circular(15),
                                       ),
                                       child: Container(
-                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
                                         height: 100, // Height of card
                                         child: Row(
                                           children: [
                                             Expanded(
-                                              flex: 4, // Adjust flex to make the big container wider
+                                              flex:
+                                                  4, // Adjust flex to make the big container wider
                                               child: Padding(
-                                                padding: const EdgeInsets.only(left: 8.0),
+                                                padding: const EdgeInsets.only(
+                                                    left: 8.0),
                                                 child: Row(
                                                   children: [
                                                     CircleAvatar(
-                                                        radius: 20, // Radius for circular logo
-                                                        backgroundColor: Color(0xff222232),
-                                                        backgroundImage: AssetImage(match['homeLogo'])),
-                                                    SizedBox(width: 4), // Reduced space between avatars
+                                                        radius:
+                                                            20, // Radius for circular logo
+                                                        backgroundColor:
+                                                            Color(0xff222232),
+                                                        backgroundImage:
+                                                            AssetImage(match[
+                                                                'homeLogo'])),
+                                                    SizedBox(
+                                                        width:
+                                                            4), // Reduced space between avatars
                                                     CircleAvatar(
-                                                        radius: 20, // Radius for circular logo
-                                                        backgroundColor: Color(0xff222232),
-                                                        backgroundImage: AssetImage(match['awayLogo'])),
+                                                        radius:
+                                                            20, // Radius for circular logo
+                                                        backgroundColor:
+                                                            Color(0xff222232),
+                                                        backgroundImage:
+                                                            AssetImage(match[
+                                                                'awayLogo'])),
                                                     SizedBox(width: 10),
                                                     Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
                                                       children: [
                                                         Text(
                                                           '${match['homeTeam']} vs ${match['awayTeam']}',
-                                                          style: TextStyle(color: Colors.white),
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white),
                                                         ),
                                                         Center(
                                                           child: Text.rich(
                                                             TextSpan(
                                                               children: [
                                                                 TextSpan(
-                                                                  text: '${match['homeScore']}      ', // Increased spaces after home score
-                                                                  style: TextStyle(color: Colors.white54),
+                                                                  text:
+                                                                      '${match['homeScore']}      ', // Increased spaces after home score
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white54),
                                                                 ),
                                                                 TextSpan(
-                                                                  text: '-      ', // Increased spaces around the dash
-                                                                  style: TextStyle(color: Colors.white54),
+                                                                  text:
+                                                                      '-      ', // Increased spaces around the dash
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white54),
                                                                 ),
                                                                 TextSpan(
-                                                                  text: '    ${match['awayScore']}', // Increased spaces before away score
-                                                                  style: TextStyle(color: Colors.white54),
+                                                                  text:
+                                                                      '    ${match['awayScore']}', // Increased spaces before away score
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white54),
                                                                 ),
                                                               ],
                                                             ),
-                                                            textAlign: TextAlign.center, // Center-align the text
+                                                            textAlign: TextAlign
+                                                                .center, // Center-align the text
                                                           ),
                                                         ),
                                                       ],
@@ -272,16 +372,22 @@ class _MatchScreenState extends State<MatchScreen> {
                                               alignment: Alignment.center,
                                               child: Container(
                                                 height: 100,
-                                                width: 60, // Width to match height of card
-                                                padding: EdgeInsets.symmetric(vertical: 4),
+                                                width:
+                                                    60, // Width to match height of card
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 4),
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xff222232), // Always using the same color
-                                                  borderRadius: BorderRadius.circular(8),
+                                                  color: Color(
+                                                      0xff222232), // Always using the same color
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
                                                 ),
-                                                alignment: Alignment.center, // Center the text inside the container
+                                                alignment: Alignment
+                                                    .center, // Center the text inside the container
                                                 child: Text(
                                                   match['status'],
-                                                  style: TextStyle(color: Colors.white),
+                                                  style: TextStyle(
+                                                      color: Colors.white),
                                                 ),
                                               ),
                                             ),
@@ -295,11 +401,10 @@ class _MatchScreenState extends State<MatchScreen> {
                             },
                           ),
                         ),
-                       
                       ],
                     ),
                     // Lineups Tab - Including the TabBarExample
-                    
+
                     TabBarExample(),
                     // H2H Tab
                     Center(
@@ -314,6 +419,7 @@ class _MatchScreenState extends State<MatchScreen> {
             ],
           ),
         ),
+<<<<<<< HEAD
        bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedIndex, // Current selected index
           onTap: _onItemTapped, // Handle tab changes
@@ -321,6 +427,16 @@ class _MatchScreenState extends State<MatchScreen> {
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(icon: Icon(Icons.stacked_line_chart), label: 'Stats'),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+=======
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            const BottomNavigationBarItem(
+                icon: Icon(Icons.home), label: 'Home'),
+            const BottomNavigationBarItem(
+                icon: Icon(Icons.stacked_line_chart), label: 'Stats'),
+            const BottomNavigationBarItem(
+                icon: Icon(Icons.person), label: 'Profile'),
+>>>>>>> 4e03431a59510c5e98e896a00aa4e811d22ae7e8
           ],
           backgroundColor: Colors.black,
           selectedItemColor: Colors.orange,
