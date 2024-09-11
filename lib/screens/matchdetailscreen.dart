@@ -33,6 +33,16 @@ class _MatchScreenState extends State<MatchScreen> {
       'awayLogo': 'asset/images/fcb.jpg',
     },
   ];
+  
+
+   int _selectedIndex = 0; 
+
+ 
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -304,15 +314,18 @@ class _MatchScreenState extends State<MatchScreen> {
             ],
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: [
-            const BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            const BottomNavigationBarItem(
-                icon: Icon(Icons.stacked_line_chart), label: 'Stats'),
-            const BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+       bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _selectedIndex, // Current selected index
+          onTap: _onItemTapped, // Handle tab changes
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.stacked_line_chart), label: 'Stats'),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
           ],
+          backgroundColor: Colors.black,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.grey,
         ),
       ),
     );
-  }
-}
+  }}
