@@ -11,6 +11,8 @@ class MatchScreen extends StatefulWidget {
 }
 
 class _MatchScreenState extends State<MatchScreen> {
+
+  
   UniqueTournament? tournament;
 
   final List<Map<String, dynamic>> matchData = [
@@ -55,8 +57,10 @@ class _MatchScreenState extends State<MatchScreen> {
     } catch (e) {
       print('Error: $e');
     }
+  } catch (e) {
+    print('Error: $e');
   }
-
+}
   @override
   void initState() {
     super.initState();
@@ -415,7 +419,23 @@ class _MatchScreenState extends State<MatchScreen> {
             ),
 
           ),
+<<<<<<< HEAD
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home), label: 'Home'),
+             BottomNavigationBarItem(
+                icon: Icon(Icons.stacked_line_chart), label: 'Stats'),
+             BottomNavigationBarItem(
+                icon: Icon(Icons.person), label: 'Profile'),
+                BottomNavigationBarItem(
+                icon: Icon(Icons.person), label: 'Profile'),
+          ],
+        ),
+=======
         ],
+>>>>>>> a5de49b2e14da8c399dbc1b920040546a52e3ed4
       ),
     );
   }
