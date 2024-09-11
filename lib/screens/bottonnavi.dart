@@ -13,7 +13,7 @@ class BottomNavPage extends StatefulWidget {
 
 class _BottomNavPageState extends State<BottomNavPage> {
   List<Widget> screens = [
-    MatchScreen(),  // Add MatchScreen to the list of screens
+    MatchScreen(), 
     NewsHomePage(),
     StandingScreen(),
     Profilepage(),
@@ -26,7 +26,7 @@ class _BottomNavPageState extends State<BottomNavPage> {
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false, // Hide default labels
         showUnselectedLabels: false, // Hide default labels
-        unselectedItemColor: Color(0xffAAAAAA),
+        unselectedItemColor: const Color(0xffAAAAAA),
         elevation: 1,
         backgroundColor: Colors.black,
         selectedItemColor: Colors.blue,
@@ -39,76 +39,56 @@ class _BottomNavPageState extends State<BottomNavPage> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: selectedindex == 0
-                ? Text(
-                    'Home', // Show text when selected
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  )
-                : Icon(
-                    Icons.home_outlined, // Show icon when not selected
-                    size: 30,
-                    color: Colors.grey,
-                  ),
+            icon: _buildNavItem(0, 'Home', Icons.home_outlined),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: selectedindex == 1
-                ? Text(
-                    'Explore', // Show text when selected
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  )
-                : Icon(
-                    Icons.explore_outlined, // Show icon when not selected
-                    size: 30,
-                    color: Colors.grey,
-                  ),
+            icon: _buildNavItem(1, 'Explore', Icons.explore_outlined),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: selectedindex == 2
-                ? Text(
-                    'Standings', // Show text when selected
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  )
-                : Icon(
-                    Icons.insert_chart_outlined, // Show icon when not selected
-                    size: 30,
-                    color: Colors.grey,
-                  ),
+            icon: _buildNavItem(2, 'Standings', Icons.insert_chart_outlined),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: selectedindex == 3
-                ? Text(
-                    'My Profile', // Show text when selected
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  )
-                : Icon(
-                    Icons.person_outline_outlined, // Show icon when not selected
-                    size: 30,
-                    color: Colors.grey,
-                  ),
+            icon: _buildNavItem(3, 'My Profile', Icons.person_outline_outlined),
             label: '',
           ),
         ],
       ),
       body: screens[selectedindex],
+    );
+  }
+
+  Widget _buildNavItem(int index, String label, IconData icon) {
+    bool isSelected = selectedindex == index;
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        isSelected
+            ? Text(
+                label, // Show text when selected
+                style: const TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              )
+            : Icon(
+                icon, // Show icon when not selected
+                size: 30,
+                color: Colors.grey,
+              ),
+        if (isSelected)
+          const Padding(
+            padding: EdgeInsets.only(top: 4), // Space between text and dot
+            child: CircleAvatar(
+              radius: 3, // Size of the dot
+              backgroundColor: Colors.blue, // Color of the dot
+            ),
+          ),
+      ],
     );
   }
 }
