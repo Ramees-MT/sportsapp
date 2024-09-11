@@ -11,8 +11,8 @@ class MatchScreen extends StatefulWidget {
 }
 
 class _MatchScreenState extends State<MatchScreen> {
+  List screens = [];
 
-  
   UniqueTournament? tournament;
   final List<Map<String, dynamic>> matchData = [
     {
@@ -41,27 +41,28 @@ class _MatchScreenState extends State<MatchScreen> {
     },
   ];
 
- Future<void> fetchTournamentData() async {
-  const url = '$baseUrl event/xdbsZdb/h2h/events'; 
-  const headers = {
-    'Authorization': apikey, // Include your API key here
-  };
+  Future<void> fetchTournamentData() async {
+    const url = '$baseUrl event/xdbsZdb/h2h/events';
+    const headers = {
+      'Authorization': apikey, // Include your API key here
+    };
 
-  try {
-    // Pass the headers to the http.get method
-    final response = await http.get(Uri.parse(url), headers: headers);
-    if (response.statusCode == 200) {
-      final jsonData = jsonDecode(response.body);
-      setState(() {
-        tournament = UniqueTournament.fromJson(jsonData);
-      });
-    } else {
-      print('Failed to load data. Status code: ${response.statusCode}');
+    try {
+      // Pass the headers to the http.get method
+      final response = await http.get(Uri.parse(url), headers: headers);
+      if (response.statusCode == 200) {
+        final jsonData = jsonDecode(response.body);
+        setState(() {
+          tournament = UniqueTournament.fromJson(jsonData);
+        });
+      } else {
+        print('Failed to load data. Status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error: $e');
     }
-  } catch (e) {
-    print('Error: $e');
   }
-}
+
   @override
   void initState() {
     // TODO: implement initState
@@ -416,14 +417,11 @@ class _MatchScreenState extends State<MatchScreen> {
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.home), label: 'Home'),
-             BottomNavigationBarItem(
                 icon: Icon(Icons.stacked_line_chart), label: 'Stats'),
-             BottomNavigationBarItem(
-                icon: Icon(Icons.person), label: 'Profile'),
-                BottomNavigationBarItem(
-                icon: Icon(Icons.person), label: 'Profile'),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
           ],
         ),
       ),
