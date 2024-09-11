@@ -3,19 +3,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(Detailteam());
-}
 
-class Detailteam extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MatchDetailScreen(),
-    );
-  }
-}
 
 class MatchDetailScreen extends StatefulWidget {
   @override
