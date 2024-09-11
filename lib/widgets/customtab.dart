@@ -46,6 +46,7 @@ class _TabBarExampleState extends State<TabBarExample>
           ),
           labelColor: Colors.white,
           unselectedLabelColor: Colors.grey,
+          
           tabs: const [
             Tab(text: 'Arsenal'), // Tab text
             Tab(text: 'Aston Villa'), // Tab text

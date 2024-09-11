@@ -24,12 +24,12 @@ class _BottomNavPageState extends State<BottomNavPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
+        showSelectedLabels: false, // Hide default labels
+        showUnselectedLabels: false, // Hide default labels
         unselectedItemColor: Color(0xffAAAAAA),
         elevation: 1,
         backgroundColor: Colors.black,
-        selectedItemColor: Colors.orange,
+        selectedItemColor: Colors.blue,
         type: BottomNavigationBarType.fixed,
         currentIndex: selectedindex,
         onTap: (value) {
@@ -37,34 +37,73 @@ class _BottomNavPageState extends State<BottomNavPage> {
             selectedindex = value;
           });
         },
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_outlined,
-              size: 30,
-            ),
+            icon: selectedindex == 0
+                ? Text(
+                    'Home', // Show text when selected
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  )
+                : Icon(
+                    Icons.home_outlined, // Show icon when not selected
+                    size: 30,
+                    color: Colors.grey,
+                  ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.explore_outlined,
-              size: 30,
-            ),
+            icon: selectedindex == 1
+                ? Text(
+                    'Explore', // Show text when selected
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  )
+                : Icon(
+                    Icons.explore_outlined, // Show icon when not selected
+                    size: 30,
+                    color: Colors.grey,
+                  ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.insert_chart_outlined,
-              size: 30,
-            ),
+            icon: selectedindex == 2
+                ? Text(
+                    'Standings', // Show text when selected
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  )
+                : Icon(
+                    Icons.insert_chart_outlined, // Show icon when not selected
+                    size: 30,
+                    color: Colors.grey,
+                  ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person_outline_outlined,
-              size: 30,
-              
-            ),
+            icon: selectedindex == 3
+                ? Text(
+                    'My Profile', // Show text when selected
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  )
+                : Icon(
+                    Icons.person_outline_outlined, // Show icon when not selected
+                    size: 30,
+                    color: Colors.grey,
+                  ),
             label: '',
           ),
         ],

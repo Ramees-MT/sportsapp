@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sportsapp/model/headtoheadmodel.dart';
 import 'package:sportsapp/utils/constants.dart';
+import 'package:sportsapp/widgets/customtab.dart';
 
 class MatchScreen extends StatefulWidget {
   @override
@@ -402,12 +403,7 @@ class _MatchScreenState extends State<MatchScreen> {
                   ],
                 ),
                 // Lineups Tab
-                Center(
-                  child: Text(
-                    'Lineups Content',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
+                TabBarExample(),
                 // H2H Tab
                 Center(
                   child: Text(
