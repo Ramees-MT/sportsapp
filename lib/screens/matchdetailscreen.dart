@@ -11,6 +11,8 @@ class MatchScreen extends StatefulWidget {
 }
 
 class _MatchScreenState extends State<MatchScreen> {
+
+  
   UniqueTournament? tournament;
   final List<Map<String, dynamic>> matchData = [
     {
@@ -39,24 +41,27 @@ class _MatchScreenState extends State<MatchScreen> {
     },
   ];
 
-  Future<void> fetchTournamentData() async {
-    final url =
-        '$baseUrl v1/event/xdbsZdb/h2h/events'; // Replace with your API URL
-    try {
-      final response = await http.get(Uri.parse(url));
-      if (response.statusCode == 200) {
-        final jsonData = jsonDecode(response.body);
-        setState(() {
-          tournament = UniqueTournament.fromJson(jsonData);
-        });
-      } else {
-        print('Failed to load data. Status code: ${response.statusCode}');
-      }
-    } catch (e) {
-      print('Error: $e');
-    }
-  }
+ Future<void> fetchTournamentData() async {
+  const url = '$baseUrl event/xdbsZdb/h2h/events'; 
+  const headers = {
+    'Authorization': apikey, // Include your API key here
+  };
 
+  try {
+    // Pass the headers to the http.get method
+    final response = await http.get(Uri.parse(url), headers: headers);
+    if (response.statusCode == 200) {
+      final jsonData = jsonDecode(response.body);
+      setState(() {
+        tournament = UniqueTournament.fromJson(jsonData);
+      });
+    } else {
+      print('Failed to load data. Status code: ${response.statusCode}');
+    }
+  } catch (e) {
+    print('Error: $e');
+  }
+}
   @override
   void initState() {
     // TODO: implement initState
@@ -411,11 +416,13 @@ class _MatchScreenState extends State<MatchScreen> {
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: [
-            const BottomNavigationBarItem(
+            BottomNavigationBarItem(
                 icon: Icon(Icons.home), label: 'Home'),
-            const BottomNavigationBarItem(
+             BottomNavigationBarItem(
                 icon: Icon(Icons.stacked_line_chart), label: 'Stats'),
-            const BottomNavigationBarItem(
+             BottomNavigationBarItem(
+                icon: Icon(Icons.person), label: 'Profile'),
+                BottomNavigationBarItem(
                 icon: Icon(Icons.person), label: 'Profile'),
           ],
         ),
