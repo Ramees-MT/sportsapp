@@ -265,7 +265,8 @@ class _LivescoreState extends State<Livescore> {
                             ],
                           ),
                           GestureDetector(
-                            onTap:(){ Navigator.push(context, MaterialPageRoute(builder: (context) => MatchScreen(),));},
+                            onTap:(){ Navigator.push(context, MaterialPageRoute(
+                              builder: (context) => MatchScreen(),));},
                             child: Card(
                               color: const Color(0xff2B2B3D),
                               shape: RoundedRectangleBorder(
@@ -315,7 +316,7 @@ class _LivescoreState extends State<Livescore> {
                                                       children: [
                                                         TextSpan(
                                                           text:
-                                                              '${match['homeScore']}      ', 
+                                                              '${match['homeScore']}', 
                                                           style: const TextStyle(
                                                               color:
                                                                   Colors.white54),
