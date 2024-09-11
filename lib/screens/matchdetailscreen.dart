@@ -10,8 +10,6 @@ class MatchScreen extends StatefulWidget {
 }
 
 class _MatchScreenState extends State<MatchScreen> {
-
-  
   UniqueTournament? tournament;
 
   final List<Map<String, dynamic>> matchData = [
@@ -42,7 +40,8 @@ class _MatchScreenState extends State<MatchScreen> {
   ];
 
   Future<void> fetchTournamentData() async {
-    final url = '$baseUrl v1/event/xdbsZdb/h2h/events'; // Replace with your API URL
+    final url =
+        '$baseUrl v1/event/xdbsZdb/h2h/events'; // Replace with your API URL
     try {
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
@@ -56,10 +55,8 @@ class _MatchScreenState extends State<MatchScreen> {
     } catch (e) {
       print('Error: $e');
     }
-  } catch (e) {
-    print('Error: $e');
   }
-}
+
   @override
   void initState() {
     super.initState();
@@ -97,8 +94,7 @@ class _MatchScreenState extends State<MatchScreen> {
               Column(
                 children: [
                   Image.asset('asset/images/idezia.png', height: 50),
-                  const Text('Arsenal',
-                      style: TextStyle(color: Colors.white)),
+                  const Text('Arsenal', style: TextStyle(color: Colors.white)),
                 ],
               ),
               const Column(
@@ -181,11 +177,9 @@ class _MatchScreenState extends State<MatchScreen> {
                       child: Column(
                         children: [
                           Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Text('8 ',
-                                  style: TextStyle(color: Colors.white)),
+                              Text('8 ', style: TextStyle(color: Colors.white)),
                               Text('shooting',
                                   style: TextStyle(color: Colors.white)),
                               Text('12 ',
@@ -193,8 +187,7 @@ class _MatchScreenState extends State<MatchScreen> {
                             ],
                           ),
                           Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Text('22 ',
                                   style: TextStyle(color: Colors.white)),
@@ -205,8 +198,7 @@ class _MatchScreenState extends State<MatchScreen> {
                             ],
                           ),
                           Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Text('48 ',
                                   style: TextStyle(color: Colors.white)),
@@ -217,27 +209,21 @@ class _MatchScreenState extends State<MatchScreen> {
                             ],
                           ),
                           Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Text('3 ',
-                                  style: TextStyle(color: Colors.white)),
+                              Text('3 ', style: TextStyle(color: Colors.white)),
                               Text('shooting',
                                   style: TextStyle(color: Colors.white)),
-                              Text('5 ',
-                                  style: TextStyle(color: Colors.white)),
+                              Text('5 ', style: TextStyle(color: Colors.white)),
                             ],
                           ),
                           Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Text('8 ',
-                                  style: TextStyle(color: Colors.white)),
+                              Text('8 ', style: TextStyle(color: Colors.white)),
                               Text('shooting',
                                   style: TextStyle(color: Colors.white)),
-                              Text('7',
-                                  style: TextStyle(color: Colors.white)),
+                              Text('7', style: TextStyle(color: Colors.white)),
                             ],
                           ),
                         ],
@@ -284,8 +270,8 @@ class _MatchScreenState extends State<MatchScreen> {
                                   ),
                                   child: Container(
                                     decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
                                     height: 100, // Height of card
                                     child: Row(
                                       children: [
@@ -298,38 +284,35 @@ class _MatchScreenState extends State<MatchScreen> {
                                             child: Row(
                                               children: [
                                                 CircleAvatar(
-                                                    radius:
-                                                        20, // Radius for circular logo
-                                                    backgroundColor:
-                                                        Color(0xff222232),
-                                                    backgroundImage:
-                                                        AssetImage(match[
-                                                            'homeLogo'])),
+                                                  radius:
+                                                      20, // Radius for circular logo
+                                                  backgroundColor:
+                                                      Color(0xff222232),
+                                                  backgroundImage: AssetImage(
+                                                      match['homeLogo']),
+                                                ),
                                                 SizedBox(
                                                     width:
                                                         4), // Reduced space between avatars
                                                 CircleAvatar(
-                                                    radius:
-                                                        20, // Radius for circular logo
-                                                    backgroundColor:
-                                                        Color(0xff222232),
-                                                    backgroundImage:
-                                                        AssetImage(match[
-                                                            'awayLogo'])),
+                                                  radius:
+                                                      20, // Radius for circular logo
+                                                  backgroundColor:
+                                                      Color(0xff222232),
+                                                  backgroundImage: AssetImage(
+                                                      match['awayLogo']),
+                                                ),
                                                 SizedBox(width: 10),
                                                 Column(
                                                   crossAxisAlignment:
-                                                      CrossAxisAlignment
-                                                          .start,
+                                                      CrossAxisAlignment.start,
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .center,
+                                                      MainAxisAlignment.center,
                                                   children: [
                                                     Text(
                                                       '${match['homeTeam']} vs ${match['awayTeam']}',
                                                       style: TextStyle(
-                                                          color:
-                                                              Colors.white),
+                                                          color: Colors.white),
                                                     ),
                                                     Center(
                                                       child: Text.rich(
@@ -338,33 +321,28 @@ class _MatchScreenState extends State<MatchScreen> {
                                                             TextSpan(
                                                               text:
                                                                   '${match['homeScore']}      ', // Increased spaces after home score
-                                                              style:
-                                                                  TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
                                                             ),
                                                             WidgetSpan(
                                                               child: SizedBox(
-                                                                  width:
-                                                                      10),
+                                                                  width: 10),
                                                             ), // Add a small space here
                                                             TextSpan(
                                                               text:
-                                                                  '${match['awayScore']}',
-                                                              style:
-                                                                  TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
+                                                                  '   ${match['awayScore']} ', // Increased spaces after away score
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
                                                             ),
                                                           ],
                                                         ),
                                                         style: TextStyle(
-                                                            color: Colors
-                                                                .white),
+                                                            color: Colors.white,
+                                                            fontSize: 12),
                                                       ),
                                                     ),
                                                   ],
@@ -373,23 +351,52 @@ class _MatchScreenState extends State<MatchScreen> {
                                             ),
                                           ),
                                         ),
+                                        Spacer(),
                                         Expanded(
                                           flex: 2,
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: Colors
-                                                  .orange, // Orange background for "FT"
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                            ),
-                                            height: 30, // Smaller container
-                                            width: 60,
-                                            child: Center(
-                                              child: Text(
-                                                match['status'],
-                                                style: TextStyle(
-                                                    color: Colors.white),
-                                              ),
+                                          child: Center(
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  match['league'],
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                Text(
+                                                  '${match['flag']}  ${match['country']}',
+                                                  style: TextStyle(
+                                                    color: Colors.white
+                                                        .withOpacity(0.5),
+                                                    fontSize: 12,
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 4),
+                                                Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 12,
+                                                      vertical: 4),
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xff222232),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
+                                                  ),
+                                                  child: Text(
+                                                    match['status'],
+                                                    style: TextStyle(
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                      color: Colors.white
+                                                          .withOpacity(0.7),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ),
@@ -407,39 +414,16 @@ class _MatchScreenState extends State<MatchScreen> {
                 ),
                 // Lineups Tab
                 Center(
-                  child: Text(
-                    'Lineups Content',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
+                    child: Text('Lineups Tab Content',
+                        style: TextStyle(color: Colors.white))),
                 // H2H Tab
                 Center(
-                  child: Text(
-                    'H2H Content',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
+                    child: Text('H2H Tab Content',
+                        style: TextStyle(color: Colors.white))),
               ],
             ),
-
           ),
-<<<<<<< HEAD
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home), label: 'Home'),
-             BottomNavigationBarItem(
-                icon: Icon(Icons.stacked_line_chart), label: 'Stats'),
-             BottomNavigationBarItem(
-                icon: Icon(Icons.person), label: 'Profile'),
-                BottomNavigationBarItem(
-                icon: Icon(Icons.person), label: 'Profile'),
-          ],
-        ),
-=======
         ],
->>>>>>> a5de49b2e14da8c399dbc1b920040546a52e3ed4
       ),
     );
   }
