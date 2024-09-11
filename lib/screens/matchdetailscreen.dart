@@ -40,6 +40,16 @@ class _MatchScreenState extends State<MatchScreen> {
       'awayLogo': 'asset/images/fcb.jpg',
     },
   ];
+  
+
+   int _selectedIndex = 0; 
+
+ 
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   Future<void> fetchTournamentData() async {
     const url = '$baseUrl event/xdbsZdb/h2h/events';
@@ -415,16 +425,27 @@ class _MatchScreenState extends State<MatchScreen> {
             ],
           ),
         ),
+<<<<<<< HEAD
+       bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _selectedIndex, // Current selected index
+          onTap: _onItemTapped, // Handle tab changes
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.stacked_line_chart), label: 'Stats'),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+=======
         bottomNavigationBar: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.stacked_line_chart), label: 'Stats'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+            const BottomNavigationBarItem(
+                icon: Icon(Icons.person), label: 'Profile'),
           ],
+          backgroundColor: Colors.black,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.grey,
         ),
       ),
     );
-  }
-}
+  }}
