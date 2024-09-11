@@ -152,7 +152,7 @@ class _StandingScreenState extends State<StandingScreen> {
           ),
            DataRow(
             cells: <DataCell>[
-              DataCell(Image.asset('asset/images/barcelona.png',height: 30)),
+              DataCell(Image.asset('asset/images/Barcelona.png',height: 30)),
       
               DataCell(Text('Barcelona', style: TextStyle(color: Colors.white))),
               DataCell(Text('18', style: TextStyle(color: Colors.white))),
