@@ -1,5 +1,8 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:sportsapp/screens/livescorescreen.dart';
+import 'package:sportsapp/model/categorymodel.dart';
+import 'package:sportsapp/screens/bottonnavi.dart';
+import 'package:sportsapp/services/apiservices.dart';
 
 class SplashScreen2 extends StatefulWidget {
   const SplashScreen2({super.key});
@@ -19,68 +22,101 @@ class _SplashScreenState extends State<SplashScreen2> {
     });
   }
 
+  // Function to get the image path based on sport name
+  String _getImagePathForSport(String sport) {
+    switch (sport) {
+      case 'UEFA Champions League':
+        return 'asset/images/laliga.jpg';
+      case 'PL':
+        return 'asset/images/premierleaguelogo.png';
+      case 'UEFA Conference League':
+        return 'asset/images/conference.png';
+      case 'Nations league':
+        return 'asset/images/nations.jpg';
+      case 'UEFA Super Cup':
+        return 'asset/images/supercup.jpeg';
+      case 'UEFA Europa League':
+        return 'asset/images/ueropa.png';
+      case "UEFA Women's Champions League":
+        return 'asset/images/download.png';
+      case 'UEFA Nations League':
+        return 'asset/images/nationsl.jpg';
+      default:
+        return 'asset/images/ueropa.png'; // Provide a default image path if needed
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(
-                              0xFF182039),
+      backgroundColor: const Color(0xFF182039),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 80,
-            ),
-            Text(
-              'What sport do \nyou interest?',
+            const SizedBox(height: 80),
+            const Text(
+              'Explore Football Tournaments !',
               style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold),
+                color: Colors.white,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
             Text(
               'You can choose only one',
               style: TextStyle(
-                  color: Colors.white.withOpacity(0.2), fontSize: 14),
+                color: Colors.white.withOpacity(0.2),
+                fontSize: 14,
+              ),
             ),
-            SizedBox(height: 60,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _buildSportColumn('Volleyball', 'asset/images/image 1.png'),
-                _buildSportColumn('Football', 'asset/images/image 2.png'),
-                _buildSportColumn('Soccer', 'asset/images/image 3.png'),
-              ],
+            const SizedBox(height: 40),
+            FutureBuilder<List<CategoryModel>>(
+              future: Apiservices().category(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error.toString()}');
+                } else {
+                  final categories = snapshot.data ?? [];
+
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: categories.length,
+                      itemBuilder: (context, index) {
+                        final sportName = categories[index].name ?? 'Unknown';
+                        return _buildSportTile(sportName);
+                      },
+                    ),
+                  );
+                }
+              },
             ),
-            SizedBox(height: 20,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _buildSportColumn('Baseball', 'asset/images/image 4.png'),
-                _buildSportColumn('Tennis', 'asset/images/image 7.png'),
-                _buildSportColumn('Basketball', 'asset/images/baseball_26be 1.png'),
-              ],
-            ),
-            SizedBox(height: 130,),
+            const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Livescore(),));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BottomNavPage(),
+                  ),
+                );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF347AF0), // Button background color
+                backgroundColor:
+                    const Color(0xFF347AF0), // Button background color
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   vertical: 20,
                   horizontal: 140,
                 ),
               ),
-              child: Text(
+              child: const Text(
                 'Continue',
                 style: TextStyle(
                   color: Colors.white,
@@ -92,31 +128,54 @@ class _SplashScreenState extends State<SplashScreen2> {
             Center(
               child: TextButton(
                 onPressed: () {},
-                child: Text('Skip', style: TextStyle(color: Colors.white)),
+                child: const Text(
+                  'Skip',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
-            )
+            ),
           ],
         ),
       ),
     );
   }
 
-  // Widget to build each sport column
-  Widget _buildSportColumn(String sport, String imagePath) {
+  // Widget to build each sport tile
+  Widget _buildSportTile(String sport) {
     return GestureDetector(
       onTap: () => _selectSport(sport),
-      child: Column(
-        children: [
-          CircleAvatar(
-            backgroundColor: _selectedSport == sport ? Colors.orange : Colors.white.withOpacity(0.1),
-            radius: 50,
-            child: Image.asset(imagePath, height: 50),
+      child: Card(
+        color: _selectedSport == sport
+            ? Colors.orange // Change the color when selected
+            : const Color(0xFF1C223D), // Default card color
+        elevation: 5,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Row(
+            children: [
+              CircleAvatar(
+                backgroundColor: _selectedSport == sport
+                    ? Colors.orange
+                    : Colors.white.withOpacity(0.1),
+                radius: 30,
+                child: Image.asset(
+                  _getImagePathForSport(sport),
+                  height: 40,
+                ),
+              ),
+              const SizedBox(width: 20),
+              Text(
+                sport,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
           ),
-          Text(
-            sport,
-            style: TextStyle(color: Colors.white),
-          ),
-        ],
+        ),
       ),
     );
   }
